@@ -149,7 +149,7 @@ ili9488_status_t ili9488_low_if_read_register(const ili9488_cmd_t cmd, uint8_t *
 *	This function writes constant RGB code and write size
 *	number pixels.
 *
-* @param[in]	rgb 	- Pointer to rgb code
+* @param[in]	p_rgb 	- Pointer to rgb code
 * @param[in]	size 	- Number of data to transmit
 * @return		status 	- Either Ok or Error
 */

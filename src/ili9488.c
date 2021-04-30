@@ -477,12 +477,12 @@ static ili9488_status_t ili9488_fill_round_rectangle(const uint16_t page, const 
 /**
 *		Fill rectangle
 *
-* @param[in]	page - Start page
-* @param[in]	col - Start column
-* @param[in]	col_size - Size of column
-* @param[in]	page_size - Size of page
-* @param[in]	color - Color of rectangle
-* @return		status - Either Ok or Error
+* @param[in]	page 		- Start page
+* @param[in]	col 		- Start column
+* @param[in]	c_size 		- Size of column
+* @param[in]	p_size 		- Size of page
+* @param[in]	color 		- Color of rectangle
+* @return		status 		- Either Ok or Error
 */
 ////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_fill_rectangle(const uint16_t page, const uint16_t col, const uint16_t p_size, const uint16_t c_size, const ili9488_color_t color)

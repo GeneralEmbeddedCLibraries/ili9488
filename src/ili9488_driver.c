@@ -487,8 +487,8 @@ ili9488_status_t ili9488_driver_set_orientation(const ili9488_orientation_t orie
 *
 * @note	Hardcoded RGB format of pixel (not BGR).
 *
-* @param[in] 	orientation - Orientation of display
-* @return 		status - Either Ok or Error
+* @param[in] 	p_orientation 	- Pointer to orientation of display
+* @return 		status 			- Either Ok or Error
 */
 ////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_get_orientation(ili9488_orientation_t * const p_orientation)

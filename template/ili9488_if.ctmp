@@ -29,6 +29,7 @@
 
 #include "drivers/peripheral/gpio/gpio.h"
 #include "drivers/peripheral/timer/timer.h"
+#include "drivers/peripheral/spi/spi.h"
 
 // USER INCLUDES END...
 
@@ -186,6 +187,11 @@ ili9488_status_t ili9488_if_spi_transmit(const uint8_t * p_data, const uint32_t 
 
 	// USER CODE BEGIN...
 
+	if ( eSPI_OK != spi_display_transmit((uint8_t*) p_data, size ))
+	{
+		status = eILI9488_ERROR_SPI;
+	}
+
 	// USER CODE END...
 
 	return status;
@@ -205,6 +211,11 @@ ili9488_status_t ili9488_if_spi_receive(uint8_t * p_data, const uint32_t size)
 	ili9488_status_t status = eILI9488_OK;
 
 	// USER CODE BEGIN...
+
+	if ( eSPI_OK != spi_display_receive( p_data, size ))
+	{
+		status = eILI9488_ERROR_SPI;
+	}
 
 	// USER CODE END...
 
