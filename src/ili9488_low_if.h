@@ -31,12 +31,14 @@
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 
-// RGB color code
+/**
+ * 	RGB color code
+ */
 typedef struct
 {
-	uint8_t R;
-	uint8_t G;
-	uint8_t B;
+	uint8_t R;	/**<Red color */
+	uint8_t G;	/**<Green color */
+	uint8_t B;	/**<Blue color */
 } ili9488_rgb_t;
 
 ////////////////////////////////////////////////////////////////////////////////
