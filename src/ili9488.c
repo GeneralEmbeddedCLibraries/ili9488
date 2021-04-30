@@ -72,24 +72,13 @@ static ili9488_status_t ili9488_fill_circle			(const uint16_t page, const uint16
 // Functions
 ////////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////
-/*
-*			Initialize display
-*
-*	param:		none
-*	return:		status - Either Ok or Error
-*/
-//////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////
 /**
-*		Low level application task
+*		Initialize display
 *
-* @param[in] 	args - Optional arguments
-* @return 		none
+* @return 		status - Either Ok or Error
 */
 ////////////////////////////////////////////////////////////////////////////////
-
 ili9488_status_t ili9488_init(void)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -121,25 +110,14 @@ ili9488_status_t ili9488_init(void)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set display background
-*
-*	param:		color - Color of background
-*	return:		status - Status of operation
-*/
-//////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////
 /**
-*		Low level application task
+*		Set display background
 *
-* @param[in] 	args - Optional arguments
-* @return 		none
+* @param[in] 	color - Color of background
+* @return 		status - Status of operation
 */
 ////////////////////////////////////////////////////////////////////////////////
-
 ili9488_status_t ili9488_set_background(const ili9488_color_t color)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -163,27 +141,16 @@ ili9488_status_t ili9488_set_background(const ili9488_color_t color)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set string pen
-*
-*	param:		fg_color - Foreground color
-*	param:		bg_color - Background color
-*	param:		font_opt - Font of choise
-*	return:		status - Always OK
-*/
-//////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////
 /**
-*		Low level application task
+*		Set string pen
 *
-* @param[in] 	args - Optional arguments
-* @return 		none
+* @param[in]	fg_color - Foreground color
+* @param[in]	bg_color - Background color
+* @param[in]	font_opt - Font of choise
+* @return 		status - Always OK
 */
 ////////////////////////////////////////////////////////////////////////////////
-
 ili9488_status_t ili9488_set_string_pen(const ili9488_color_t fg_color, const ili9488_color_t bg_color, const ili9488_font_opt_t font_opt)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -205,27 +172,16 @@ ili9488_status_t ili9488_set_string_pen(const ili9488_color_t fg_color, const il
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Display string
-*
-*	param:		str - String to display
-*	param:		page - Start page
-*	param:		col - Start column
-*	return:		status - Either Ok or Error
-*/
-//////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////
 /**
-*		Low level application task
+*		Display string
 *
-* @param[in] 	args - Optional arguments
-* @return 		none
+* @param[in]	str - String to display
+* @param[in]	page - Start page
+* @param[in]	col - Start column
+* @return 		status - Either Ok or Error
 */
 ////////////////////////////////////////////////////////////////////////////////
-
 ili9488_status_t ili9488_set_string(const char* str, const uint16_t page, const uint16_t col)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -245,50 +201,27 @@ ili9488_status_t ili9488_set_string(const char* str, const uint16_t page, const 
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Get status of initialization
-*
-*	param:		none
-*	return:		initialization status
-*/
-//////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////
 /**
-*		Low level application task
+*		Get status of initialisation
 *
-* @param[in] 	args - Optional arguments
-* @return 		none
+* @return 		initialisation status
 */
 ////////////////////////////////////////////////////////////////////////////////
-
 bool ili9488_is_init(void)
 {
 	return gb_is_init;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set cursor for printf functionality
-*
-*	param:		page 	- Cursor page (x) coordinate
-*	param:		col 	- Cursor column (y) coordinate
-*	return:		status 	- Status of operation
-*/
-//////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////
 /**
-*		Low level application task
+*		Set cursor for printf functionality
 *
-* @param[in] 	args - Optional arguments
-* @return 		none
+* @param[in] 	page 	- Cursor page (x) coordinate
+* @param[in] 	col 	- Cursor column (y) coordinate
+* @return 		status 	- Status of operation
 */
 ////////////////////////////////////////////////////////////////////////////////
-
 ili9488_status_t ili9488_set_cursor(const uint16_t page, const uint16_t col)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -325,25 +258,14 @@ ili9488_status_t ili9488_set_cursor(const uint16_t page, const uint16_t col)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Print formated string to display
-*
-*	param:		format - Formated string
-*	return:		status 	- Status of operation
-*/
-//////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////
 /**
-*		Low level application task
+*		Print formated string to display
 *
-* @param[in] 	args - Optional arguments
-* @return 		none
+* @param[in] 	format - Formated string
+* @return 		status 	- Status of operation
 */
 ////////////////////////////////////////////////////////////////////////////////
-
 ili9488_status_t ili9488_printf(const char *format, ...)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -409,25 +331,14 @@ ili9488_status_t ili9488_printf(const char *format, ...)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Draw rectangle
-*
-*	param:		p_rectanegle_attr - Pointer to rectangle attributes
-*	return:		status 	- Status of operation
-*/
-//////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////
 /**
-*		Low level application task
+*		Draw rectangle
 *
-* @param[in] 	args - Optional arguments
-* @return 		none
+* @param[in] 	p_rectanegle_attr - Pointer to rectangle attributes
+* @return 		status 	- Status of operation
 */
 ////////////////////////////////////////////////////////////////////////////////
-
 ili9488_status_t ili9488_draw_rectangle(const ili9488_rect_attr_t * const p_rectanegle_attr)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -520,30 +431,19 @@ ili9488_status_t ili9488_draw_rectangle(const ili9488_rect_attr_t * const p_rect
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Fill round rectangle
-*
-*	param:		page 	- Page start
-*	param:		col 	- Column start
-*	param:		p_size 	- Page size
-*	param:		c_size 	- Column i+size
-*	param:		color 	- Color of rectange
-*	param:		radius 	- Size of radius
-*	return:		status 	- Status of operation
-*/
-//////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////
 /**
-*		Low level application task
+*		Fill round rectangle
 *
-* @param[in] 	args - Optional arguments
-* @return 		none
+* @param[in]	page 	- Page start
+* @param[in]	col 	- Column start
+* @param[in]	p_size 	- Page size
+* @param[in]	c_size 	- Column i+size
+* @param[in]	color 	- Color of rectange
+* @param[in]	radius 	- Size of radius
+* @return		status 	- Status of operation
 */
 ////////////////////////////////////////////////////////////////////////////////
-
 static ili9488_status_t ili9488_fill_round_rectangle(const uint16_t page, const uint16_t col, const uint16_t p_size, const uint16_t c_size, const ili9488_color_t color, const uint8_t radius)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -572,29 +472,18 @@ static ili9488_status_t ili9488_fill_round_rectangle(const uint16_t page, const 
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Fill rectangle
-*
-*	param: 		page - Start page
-*	param: 		col - Start column
-*	param: 		col_size - Size of column
-*	param: 		page_size - Size of page
-*	param: 		color - Color of rectangle
-*	return:		status - Either Ok or Error
-*/
-//////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////
 /**
-*		Low level application task
+*		Fill rectangle
 *
-* @param[in] 	args - Optional arguments
-* @return 		none
+* @param[in]	page - Start page
+* @param[in]	col - Start column
+* @param[in]	col_size - Size of column
+* @param[in]	page_size - Size of page
+* @param[in]	color - Color of rectangle
+* @return		status - Either Ok or Error
 */
 ////////////////////////////////////////////////////////////////////////////////
-
 ili9488_status_t ili9488_fill_rectangle(const uint16_t page, const uint16_t col, const uint16_t p_size, const uint16_t c_size, const ili9488_color_t color)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -618,25 +507,14 @@ ili9488_status_t ili9488_fill_rectangle(const uint16_t page, const uint16_t col,
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Draw circle
-*
-*	param: 		p_circle_attr 	- Pointer to circle attributes
-*	return:		status 			- Status of operation
-*/
-//////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////
 /**
-*		Low level application task
+*		Draw circle
 *
-* @param[in] 	args - Optional arguments
-* @return 		none
+* @param[in] 	p_circle_attr 	- Pointer to circle attributes
+* @return 		status 			- Status of operation
 */
 ////////////////////////////////////////////////////////////////////////////////
-
 ili9488_status_t ili9488_draw_circle(const ili9488_circ_attr_t * const p_circle_attr)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -695,28 +573,17 @@ ili9488_status_t ili9488_draw_circle(const ili9488_circ_attr_t * const p_circle_
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Fill circle
-*
-*	param: 		page 	- Start page
-*	param: 		col 	- Start column
-*	param: 		radius	- Size of radius
-*	param: 		color 	- Color of rectangle
-*	return:		status 	- Status of operation
-*/
-//////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////
 /**
-*		Low level application task
+*		Fill (draw) circle
 *
-* @param[in] 	args - Optional arguments
-* @return 		none
+* @param[in]	page 	- Start page
+* @param[in]	col 	- Start column
+* @param[in]	radius	- Size of radius
+* @param[in]	color 	- Color of rectangle
+* @return 		status 	- Status of operation
 */
 ////////////////////////////////////////////////////////////////////////////////
-
 static ili9488_status_t ili9488_fill_circle(const uint16_t page, const uint16_t col, const uint16_t radius, const ili9488_color_t color)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -740,25 +607,14 @@ static ili9488_status_t ili9488_fill_circle(const uint16_t page, const uint16_t 
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set up display backlight
-*
-*	param: 		brightness 	- Brightness value from 0.0 - 1.0
-*	return:		status 		- Status of operation
-*/
-//////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////
 /**
-*		Low level application task
+*		Set up display backlight
 *
-* @param[in] 	args - Optional arguments
-* @return 		none
+* @param[in] 	brightness 	- Brightness value from 0.0 - 1.0
+* @return 		status 		- Status of operation
 */
 ////////////////////////////////////////////////////////////////////////////////
-
 ili9488_status_t ili9488_set_backlight(const float32_t brightness)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -782,8 +638,9 @@ ili9488_status_t ili9488_set_backlight(const float32_t brightness)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-// END OF FILE
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/**
+* @} <!-- END GROUP -->
+*/
+////////////////////////////////////////////////////////////////////////////////
 
