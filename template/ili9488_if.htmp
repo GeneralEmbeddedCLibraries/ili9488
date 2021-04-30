@@ -12,6 +12,8 @@
 * @{ <!-- BEGIN GROUP -->
 *
 * 	Application level interface with ILI9488
+*
+* 	@note User shall not change this file at all!
 */
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -21,6 +23,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Includes
 ////////////////////////////////////////////////////////////////////////////////
+#include "project_config.h"
+#include <stdbool.h>
+#include <stdint.h>
+
+#include "ili9488/src/ili9488.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -29,5 +36,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Function Prototypes
 ////////////////////////////////////////////////////////////////////////////////
+ili9488_status_t	ili9488_if_init			(void);
+void 				ili9488_if_set_cs		(const bool state);
+void 				ili9488_if_set_dc		(const bool state);
+void 				ili9488_if_set_reset	(const bool state);
+void 				ili9488_if_set_led		(const float32_t brigthness);
+ili9488_status_t 	ili9488_if_spi_transmit	(const uint8_t * p_data, const uint32_t size);
+ili9488_status_t 	ili9488_if_spi_receive	(uint8_t * p_data, const uint32_t size);
 
 #endif // _ILI9488_IF_H_

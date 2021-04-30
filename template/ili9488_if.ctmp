@@ -12,12 +12,25 @@
 * @{ <!-- BEGIN GROUP -->
 *
 * 	Application level interface driver for ILI9488 chip
+*
+*
+* 	Put code that is platform depended inside code block start with
+* 	"USER_CODE_BEGIN" and with end of "USER_CODE_END".
+*
 */
 ////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////
 // Includes
 ////////////////////////////////////////////////////////////////////////////////
+#include "ili9488_if.h"
+
+// USER INCLUDES BEGIN...
+
+#include "drivers/peripheral/gpio/gpio.h"
+#include "drivers/peripheral/timer/timer.h"
+
+// USER INCLUDES END...
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -35,7 +48,168 @@
 // Functions
 ////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Initialise interface (peirphery)
+*
+* @note	User shall put here all hardware dependent initilisation. Those are
+* 		GPIO, SPI & TIMER.
+*
+* 		Not needed to be initilized here but must be initiliezd before calling
+* 		"ili9488_init()" function!
+*
+* @return		status 	- Status of initilization
+*/
+////////////////////////////////////////////////////////////////////////////////
+ili9488_status_t ili9488_if_init(void)
+{
+	ili9488_status_t status = eILI9488_OK;
 
+	// USER CODE BEGIN...
+
+	// Left empty as periphery is initilize elswhere...
+
+	// USER CODE END...
+
+	return status;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Control SPI chip select line
+*
+* @note	User shall provide definition of that function based on used platform!
+*
+* @param[in]	state	- Logic state of CS line
+* @return		void
+*/
+////////////////////////////////////////////////////////////////////////////////
+void ili9488_if_set_cs(const bool state)
+{
+	// USER CODE BEGIN...
+
+	if ( true == state )
+	{
+		gpio_set( eGPIO_D_CS, eGPIO_HIGH );
+	}
+	else
+	{
+		gpio_set( eGPIO_D_CS, eGPIO_LOW );
+	}
+
+	// USER CODE END...
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Control display DC line
+*
+* @note	User shall provide definition of that function based on used platform!
+*
+* @param[in]	state	- Logic state of DC line
+* @return		void
+*/
+////////////////////////////////////////////////////////////////////////////////
+void ili9488_if_set_dc(const bool state)
+{
+	// USER CODE BEGIN...
+
+	if ( true == state )
+	{
+		gpio_set( eGPIO_D_DC_RS, eGPIO_HIGH );
+	}
+	else
+	{
+		gpio_set( eGPIO_D_DC_RS, eGPIO_LOW );
+	}
+
+	// USER CODE END...
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Control display reset line
+*
+* @note	User shall provide definition of that function based on used platform!
+*
+* @param[in]	state	- Logic state of reset line
+* @return		void
+*/
+////////////////////////////////////////////////////////////////////////////////
+void ili9488_if_set_reset(const bool state)
+{
+	// USER CODE BEGIN...
+
+	if ( true == state )
+	{
+		gpio_set( eGPIO_D_RST, eGPIO_HIGH );
+	}
+	else
+	{
+		gpio_set( eGPIO_D_RST, eGPIO_LOW );
+	}
+
+	// USER CODE END...
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Control of LED dimming timer
+*
+* @note	User shall provide definition of that function based on used platform!
+*
+* @param[in]	brightness	- Brightness of backlight display LED
+* @return		void
+*/
+////////////////////////////////////////////////////////////////////////////////
+void ili9488_if_set_led(const float32_t brigthness)
+{
+	// USER CODE BEGIN...
+
+	timer_set_pwm( eTIMER_TIM1_CH4_D_LED, brigthness );
+
+	// USER CODE END...
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Transmit bytes via SPI
+*
+* @param[in]	p_data	- Pointer to transmit data
+* @param[in]	size 	- Number of data to transmit
+* @return		status 	- Status of transmittion
+*/
+////////////////////////////////////////////////////////////////////////////////
+ili9488_status_t ili9488_if_spi_transmit(const uint8_t * p_data, const uint32_t size)
+{
+	ili9488_status_t status = eILI9488_OK;
+
+	// USER CODE BEGIN...
+
+	// USER CODE END...
+
+	return status;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Receive bytes via SPI
+*
+* @param[in]	p_data	- Pointer to received data
+* @param[in]	size 	- Number of data to receive
+* @return		status 	- Status of reception
+*/
+////////////////////////////////////////////////////////////////////////////////
+ili9488_status_t ili9488_if_spi_receive(uint8_t * p_data, const uint32_t size)
+{
+	ili9488_status_t status = eILI9488_OK;
+
+	// USER CODE BEGIN...
+
+	// USER CODE END...
+
+	return status;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 /**
