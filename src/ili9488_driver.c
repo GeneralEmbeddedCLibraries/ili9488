@@ -1,18 +1,25 @@
-//////////////////////////////////////////////////////////////
-// 
-//	project:		ILI9488 EVALUATION
-//	date:			07.07.2020
-//	
-//	author:			Ziga Miklosic
-//
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/**
+*@file      ili9488_driver.h
+*@brief     Interface driver for ILI9488 chip
+*@author    Ziga Miklosic
+*@date      31.04.2021
+*@version	V1.0.0
+*/
+////////////////////////////////////////////////////////////////////////////////
+/**
+*@addtogroup ILI9488_DRIVER
+* @{ <!-- BEGIN GROUP -->
+*
+* 	Interface driver for ILI9488 chip
+*/
+////////////////////////////////////////////////////////////////////////////////
 
-
-//////////////////////////////////////////////////////////////
-//	INCLUDES
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// Includes
+////////////////////////////////////////////////////////////////////////////////
 #include "ili9488_driver.h"
-#include "ili9488_config.h"
+#include "../../ili9488_cfg.h"
 #include "ili9488_font.h"
 
 // Strings
@@ -21,18 +28,17 @@
 #include <string.h>
 #include <math.h>
 
-//////////////////////////////////////////////////////////////
-//	DEFINITIONS
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////
-//	VARIABLES
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// Variables
+////////////////////////////////////////////////////////////////////////////////
 
-
-//////////////////////////////////////////////////////////////
-// FUNCTIONS PROTOTYPES
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// Function prototypes
+////////////////////////////////////////////////////////////////////////////////
 static ili9488_status_t ili9488_driver_set_pos_gamma			(void);
 static ili9488_status_t ili9488_driver_set_neg_gamma			(void);
 static ili9488_status_t ili9488_driver_set_power_control		(void);
@@ -45,20 +51,17 @@ static ili9488_status_t ili9488_driver_set_image_function		(void);
 static ili9488_rgb_t 	ili9488_driver_convert_color_to_rgb		(const ili9488_color_t color);
 static ili9488_status_t ili9488_driver_draw_hline				(const uint16_t page, const uint16_t col, const uint16_t length, const ili9488_color_t color);
 
+////////////////////////////////////////////////////////////////////////////////
+// Functions
+////////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////
-// FUNCTIONS 
-//////////////////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////////////////
-/*
-*			Initializing display driver
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Initializing display driver
 *
-*	param: 		none
-*	return:		status - Either Ok or Error
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_init(void)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -122,15 +125,13 @@ ili9488_status_t ili9488_driver_init(void)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Soft Reset of display
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Soft Reset of display
 *
-*	param: 		none
-*	return:		status - Either Ok or Error
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_soft_reset(void)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -140,17 +141,15 @@ ili9488_status_t ili9488_driver_soft_reset(void)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set up positive gamma.
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set up positive gamma.
 *
 *		This values are taken from other github project.
 *
-*	param: 		none
-*	return:		status - Either Ok or Error
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 static ili9488_status_t ili9488_driver_set_pos_gamma(void)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -161,17 +160,15 @@ static ili9488_status_t ili9488_driver_set_pos_gamma(void)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set up negative gamma.
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set up negative gamma.
 *
 *		This values are taken from other github project.
 *
-*	param: 		none
-*	return:		status - Either Ok or Error
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 static ili9488_status_t ili9488_driver_set_neg_gamma(void)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -182,17 +179,15 @@ static ili9488_status_t ili9488_driver_set_neg_gamma(void)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set up voltage regulators.
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set up voltage regulators.
 *
 *		This values are taken from other github project.
 *
-*	param: 		none
-*	return:		status - Either Ok or Error
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 static ili9488_status_t ili9488_driver_set_power_control(void)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -204,17 +199,13 @@ static ili9488_status_t ili9488_driver_set_power_control(void)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set interface mode control.
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set interface mode control. Using 4 wire SPI.
 *
-*		Using 4 wire SPI
-*
-*	param: 		none
-*	return:		status - Either Ok or Error
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 static ili9488_status_t ili9488_driver_set_interface_mode(void)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -224,15 +215,13 @@ static ili9488_status_t ili9488_driver_set_interface_mode(void)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set up frame rate.
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set up frame rate.
 *
-*	param: 		none
-*	return:		status - Either Ok or Error
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 static ili9488_status_t ili9488_driver_set_frame_rate(void)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -246,15 +235,13 @@ static ili9488_status_t ili9488_driver_set_frame_rate(void)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set up inversion control
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set up inversion control
 *
-*	param: 		none
-*	return:		status - Either Ok or Error
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 static ili9488_status_t ili9488_driver_set_inversion_control(void)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -265,15 +252,13 @@ static ili9488_status_t ili9488_driver_set_inversion_control(void)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set up function control
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set up function control
 *
-*	param: 		none
-*	return:		status - Either Ok or Error
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 static ili9488_status_t ili9488_driver_set_function_control(void)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -284,15 +269,13 @@ static ili9488_status_t ili9488_driver_set_function_control(void)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set up image function
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set up image function
 *
-*	param: 		none
-*	return:		status - Either Ok or Error
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 static ili9488_status_t ili9488_driver_set_image_function(void)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -303,15 +286,14 @@ static ili9488_status_t ili9488_driver_set_image_function(void)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Turn display ON/OFF
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Turn display ON/OFF
 *
-*	param: 		on_off - Switch state
-*	return:		status - Either Ok or Error
+* @param[in] 	on_off - Switch state
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_set_display_on_off(const ili9488_display_t on_off)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -328,15 +310,14 @@ ili9488_status_t ili9488_driver_set_display_on_off(const ili9488_display_t on_of
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Put display to sleep ON/OFF
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Put display to sleep ON/OFF
 *
-*	param: 		on_off - Switch state
-*	return:		status - Either Ok or Error
+* @param[in] 	on_off - Switch state
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_set_sleep_on_off(const ili9488_sleep_t on_off)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -353,15 +334,14 @@ ili9488_status_t ili9488_driver_set_sleep_on_off(const ili9488_sleep_t on_off)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Put display into IDLE mode ON/OFF
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Put display into IDLE mode ON/OFF
 *
-*	param: 		on_off - Switch state
-*	return:		status - Either Ok or Error
+* @param[in] 	on_off - Switch state
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_set_idle_on_off(const ili9488_idle_t on_off)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -378,15 +358,14 @@ ili9488_status_t ili9488_driver_set_idle_on_off(const ili9488_idle_t on_off)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set normal or partial display mode
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set normal or partial display mode
 *
-*	param: 		mode - Either normal or partial
-*	return:		status - Either Ok or Error
+* @param[in] 	mode - Either normal or partial
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_set_mode(const ili9488_mode_t mode)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -403,15 +382,14 @@ ili9488_status_t ili9488_driver_set_mode(const ili9488_mode_t mode)
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Invert all pixels of display
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Invert all pixels of display
 *
-*	param: 		inv - Invertion state
-*	return:		status - Either Ok or Error
+* @param[in] 	inv - Invertion state
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_set_display_inversion(const ili9488_inversion_t inv)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -428,15 +406,14 @@ ili9488_status_t ili9488_driver_set_display_inversion(const ili9488_inversion_t 
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Turn all pixels ON/OFF
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Turn all pixels ON/OFF
 *
-*	param: 		on_off - Switch state
-*	return:		status - Either Ok or Error
+* @param[in] 	on_off - Switch state
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_set_all_pixels(const ili9488_all_pixels_t on_off)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -453,17 +430,16 @@ ili9488_status_t ili9488_driver_set_all_pixels(const ili9488_all_pixels_t on_off
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set up memory access data control
+////////////////////////////////////////////////////////////////////////////////
+/**
+*	Set up memory access data control
 *
-*		NOTE: Hardcoded RGB format of pixel (not BGR).
+* @note	 Hardcoded RGB format of pixel (not BGR).
 *
-*	param: 		orientation - Orientation of display
-*	return:		status - Either Ok or Error
+* @param[in] 	orientation - Orientation of display
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_set_orientation(const ili9488_orientation_t orientation)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -503,17 +479,16 @@ ili9488_status_t ili9488_driver_set_orientation(const ili9488_orientation_t orie
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set up memory access data control
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set up memory access data control
 *
-*		NOTE: Hardcoded RGB format of pixel (not BGR).
+* @note	Hardcoded RGB format of pixel (not BGR).
 *
-*	param: 		orientation - Orientation of display
-*	return:		status - Either Ok or Error
+* @param[in] 	orientation - Orientation of display
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_get_orientation(ili9488_orientation_t * const p_orientation)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -540,15 +515,14 @@ ili9488_status_t ili9488_driver_get_orientation(ili9488_orientation_t * const p_
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set up pixel format
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set up pixel format
 *
-*	param: 		format - Format of pixel
-*	return:		status - Either Ok or Error
+* @param[in] 	format - Format of pixel
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_set_pixel_format(const ili9488_pixel_format_t format)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -597,15 +571,14 @@ ili9488_status_t ili9488_driver_set_pixel_format(const ili9488_pixel_format_t fo
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Read pixel format
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Read pixel format
 *
-*	param: 		p_format - Pointer to pixel format
-*	return:		status - Either Ok or Error
+* @param[in] 	p_format - Pointer to pixel format
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_read_pixel_format(ili9488_pixel_format_t * const p_format)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -642,18 +615,17 @@ ili9488_status_t ili9488_driver_read_pixel_format(ili9488_pixel_format_t * const
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set cursor
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set cursor
 *
-*	param: 		col_s - Start column
-*	param: 		col_e - End column
-*	param: 		page_s - Start page
-*	param: 		page_e - End page
-*	return:		status - Either Ok or Error
+* @param[in]	col_s - Start column
+* @param[in]	col_e - End column
+* @param[in]	page_s - Start page
+* @param[in]	page_e - End page
+* @return		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_set_cursor(const uint16_t col_s, const uint16_t col_e, const uint16_t page_s, const uint16_t page_e)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -691,16 +663,15 @@ ili9488_status_t ili9488_driver_set_cursor(const uint16_t col_s, const uint16_t 
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Write to memory
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Write to memory
 *
-*	param: 		p_mem - Pointer to data
-*	param: 		size - Number of bytes to be writen
-*	return:		status - Either Ok or Error
+* @param[in] 	p_mem - Pointer to data
+* @param[in] 	size - Number of bytes to be writen
+* @return 		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_write_memory(const uint8_t * const p_mem, const uint32_t size)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -710,16 +681,15 @@ ili9488_status_t ili9488_driver_write_memory(const uint8_t * const p_mem, const 
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Read from memory
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Read number of size bytes from memory
 *
-*	param: 		p_mem - Pointer to read data
-*	param: 		size - Number of bytes to be writen
-*	return:		status - Either Ok or Error
+* @param[in] 	p_mem - Pointer to read data
+* @param[in] 	size - Number of bytes to be writen
+* @return		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_read_memory(uint8_t * const p_mem, const uint32_t size)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -729,15 +699,14 @@ ili9488_status_t ili9488_driver_read_memory(uint8_t * const p_mem, const uint32_
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Convert color to RGB code
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Convert color to RGB code
 *
-*	param: 		color - Color
-*	return:		rgb - RGB coded color
+* @param[in] 	color 	- Color to convert
+* @return 		rgb		- RGB coded color
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 static ili9488_rgb_t ili9488_driver_convert_color_to_rgb(const ili9488_color_t color)
 {
 	ili9488_rgb_t rgb;
@@ -818,17 +787,16 @@ static ili9488_rgb_t ili9488_driver_convert_color_to_rgb(const ili9488_color_t c
 	return rgb;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set pixel
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set pixel
 *
-*	param: 		col - Column
-*	param: 		page - Page
-*	param: 		color - Color of pixel
-*	return:		status - Either Ok or Error
+* @param[in] 	col - Column
+* @param[in] 	page - Page
+* @param[in] 	color - Color of pixel
+* @return[in]	status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_set_pixel(const uint16_t page, const uint16_t col, const ili9488_color_t color)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -846,19 +814,18 @@ ili9488_status_t ili9488_driver_set_pixel(const uint16_t page, const uint16_t co
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Fill rectangle
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Fill rectangle
 *
-*	param: 		col - Start column
-*	param: 		page - Start page
-*	param: 		col_size - Size of column
-*	param: 		page_size - Size of page
-*	param: 		color - Color of rectangle
-*	return:		status - Either Ok or Error
+* @param[in]	col - Start column
+* @param[in]	page - Start page
+* @param[in]	col_size - Size of column
+* @param[in]	page_size - Size of page
+* @param[in]	color - Color of rectangle
+* @return		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_fill_rectangle(const uint16_t page, const uint16_t col, const uint16_t page_size, const uint16_t col_size, const ili9488_color_t color)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -891,18 +858,17 @@ ili9488_status_t ili9488_driver_fill_rectangle(const uint16_t page, const uint16
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Draw horizontal line
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Draw horizontal line
 *
-*	param: 		page 	- Start page
-*	param: 		col 	- Start column
-*	param: 		length 	- Length of line
-*	param: 		color 	- Color of line
-*	return:		status - Either Ok or Error
+* @param[in]	page 	- Start page
+* @param[in]	col 	- Start column
+* @param[in]	length 	- Length of line
+* @param[in]	color 	- Color of line
+* @return		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 static ili9488_status_t ili9488_driver_draw_hline(const uint16_t page, const uint16_t col, const uint16_t length, const ili9488_color_t color)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -916,22 +882,19 @@ static ili9488_status_t ili9488_driver_draw_hline(const uint16_t page, const uin
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Fill circle
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Fill (draw) circle
 *
-*		NOTE: This function is copied from github.
+* @note	This function is copied from github: https://github.com/RobertoBenjami/stm32_graphics_display_drivers/blob/master/Drivers/stm32_adafruit_lcd.c
 *
-*		Link: https://github.com/RobertoBenjami/stm32_graphics_display_drivers/blob/master/Drivers/stm32_adafruit_lcd.c
-*
-*	param: 		page 	- Start page
-*	param: 		col 	- Start column
-*	param: 		radius 	- Radius of circle
-*	param: 		color 	- Color of circle
-*	return:		status - Either Ok or Error
+* @param[in]	page 	- Start page
+* @param[in]	col 	- Start column
+* @param[in]	radius 	- Radius of circle
+* @param[in]	color 	- Color of circle
+* @return		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_fill_circle(const uint16_t page, const uint16_t col, const uint16_t radius, const ili9488_color_t color)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -1014,22 +977,20 @@ ili9488_status_t ili9488_driver_fill_circle(const uint16_t page, const uint16_t 
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set circle
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set (draw) circle
 *
-*		NOTE: This function is copied from github.
 *
-*		Link: https://github.com/RobertoBenjami/stm32_graphics_display_drivers/blob/master/Drivers/stm32_adafruit_lcd.c
+* @note	This function is copied from github: https://github.com/RobertoBenjami/stm32_graphics_display_drivers/blob/master/Drivers/stm32_adafruit_lcd.c
 *
-*	param: 		page 	- Start page
-*	param: 		col 	- Start column
-*	param: 		radius 	- Radius of circle
-*	param: 		color 	- Color of circle
-*	return:		status - Either Ok or Error
+* @param[in]	page 	- Start page
+* @param[in] 	col 	- Start column
+* @param[in] 	radius 	- Radius of circle
+* @param[in]	color 	- Color of circle
+* @return		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_set_circle(const uint16_t page, const uint16_t col, const uint16_t radius, const ili9488_color_t color)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -1081,20 +1042,19 @@ ili9488_status_t ili9488_driver_set_circle(const uint16_t page, const uint16_t c
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set character
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set (draw) character
 *
-*	param: 		ch - Character to display
-*	param: 		page - Start page
-*	param: 		col - Start column
-*	param: 		fg_color - Foreground color
-*	param: 		bg_color - Background color
-*	param: 		font_opt - Font of choise
-*	return:		status - Either Ok or Error
+* @param[in] 	ch - Character to display
+* @param[in] 	page - Start page
+* @param[in] 	col - Start column
+* @param[in] 	fg_color - Foreground color
+* @param[in] 	bg_color - Background color
+* @param[in] 	font_opt - Font of choise
+* @return		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_set_char(const uint8_t ch, const uint16_t page, const uint16_t col, const ili9488_color_t fg_color, const ili9488_color_t  bg_color, const ili9488_font_opt_t font_opt)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -1161,20 +1121,19 @@ ili9488_status_t ili9488_driver_set_char(const uint8_t ch, const uint16_t page, 
 	return status;
 }
 
-
-//////////////////////////////////////////////////////////////
-/*
-*			Set string
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Set string
 *
-*	param: 		str - Pointer to string
-*	param: 		page - Start page
-*	param: 		col - Start column
-*	param: 		fg_color - Foreground color
-*	param: 		bg_color - Background color
-*	param: 		font_opt - Font of choise
-*	return:		status - Either Ok or Error
+* @param[in] 	str - Pointer to string
+* @param[in] 	page - Start page
+* @param[in] 	col - Start column
+* @param[in] 	fg_color - Foreground color
+* @param[in]	bg_color - Background color
+* @param[in] 	font_opt - Font of choise
+* @return		status - Either Ok or Error
 */
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ili9488_status_t ili9488_driver_set_string(const char *str, const uint16_t page, const uint16_t col, const ili9488_color_t fg_color, const ili9488_color_t  bg_color, const ili9488_font_opt_t font_opt)
 {
 	ili9488_status_t status = eILI9488_OK;
@@ -1195,9 +1154,8 @@ ili9488_status_t ili9488_driver_set_string(const char *str, const uint16_t page,
 	return status;
 }
 
-
-
-//////////////////////////////////////////////////////////////
-// END OF FILE
-//////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+/**
+* @} <!-- END GROUP -->
+*/
+////////////////////////////////////////////////////////////////////////////////
