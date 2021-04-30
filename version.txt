@@ -1,7 +1,8 @@
 //============================================================
-// Version x.x.x (xx.xx.2021)
+// Version 1.0.0 (30.04.2021)
 //============================================================
 // - Initial implementation
+// - Separating low level interface to be platform independent
 // 
 //  Features:
 //   -  
