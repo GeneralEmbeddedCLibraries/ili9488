@@ -21,8 +21,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Includes
 ////////////////////////////////////////////////////////////////////////////////
-#include "stdint.h"
-#include "stm32f7xx_hal.h"
+#include <stdint.h>
 
 // Debug communication port
 #include "middleware/debug_comm_port/com_dbg.h"
@@ -34,62 +33,8 @@
 // Enable debug mode (0/1)
 #define ILI9488_DEBUG_EN				( 1 )
 
-
 // **********************************************************
-// 	SPI INTERFACE
-// **********************************************************
-#define ILI9488_SPI						( SPI1 )
-#define ILI9488_SPI_BAUDRATE_PSC		( SPI_BAUDRATEPRESCALER_4 )		// NOTE: Max. SPI clock is 20 MHz
-#define ILI9488_SPI_TIMEOUT_MS			( 10 )	// [ms]
-#define ILI9488_SPI_EN_CLK()			__HAL_RCC_SPI1_CLK_ENABLE()
-
-
-// **********************************************************
-// 	GPIO PINS
-// **********************************************************
-
-// SPI pins
-#define ILI9488_SCK__PORT				( GPIOA )
-#define ILI9488_SCK__PIN				( GPIO_PIN_5 )
-#define ILI9488_SCK__PULL				( GPIO_NOPULL )
-#define ILI9488_SCK_CLK_EN()			__HAL_RCC_GPIOA_CLK_ENABLE()
-
-#define ILI9488_MISO__PORT				( GPIOA )
-#define ILI9488_MISO__PIN				( GPIO_PIN_6 )
-#define ILI9488_MISO__PULL				( GPIO_NOPULL )
-#define ILI9488_MISO_CLK_EN()			__HAL_RCC_GPIOA_CLK_ENABLE()
-
-#define ILI9488_MOSI__PORT				( GPIOA )
-#define ILI9488_MOSI__PIN				( GPIO_PIN_7 )
-#define ILI9488_MOSI__PULL				( GPIO_NOPULL )
-#define ILI9488_MOSI_CLK_EN()			__HAL_RCC_GPIOA_CLK_ENABLE()
-
-#define ILI9488_CS__PORT				( GPIOF )
-#define ILI9488_CS__PIN					( GPIO_PIN_12 )
-#define ILI9488_CS__PULL				( GPIO_NOPULL )
-#define ILI9488_CS_CLK_EN()				__HAL_RCC_GPIOF_CLK_ENABLE()
-
-// LCD Reset line
-#define ILI9488_RESET__PORT				( GPIOD )
-#define ILI9488_RESET__PIN				( GPIO_PIN_14 )
-#define ILI9488_RESET__PULL				( GPIO_NOPULL )
-#define ILI9488_RESET_CLK_EN()			__HAL_RCC_GPIOD_CLK_ENABLE()
-
-// Data/Command line
-#define ILI9488_DC__PORT				( GPIOD )
-#define ILI9488_DC__PIN					( GPIO_PIN_15 )
-#define ILI9488_DC__PULL				( GPIO_NOPULL )
-#define ILI9488_DC_CLK_EN()				__HAL_RCC_GPIOD_CLK_ENABLE()
-
-// LED
-#define ILI9488_LED__PORT				( GPIOB )
-#define ILI9488_LED__PIN				( GPIO_PIN_4 )
-#define ILI9488_LED__PULL				( GPIO_NOPULL )
-#define ILI9488_LED_CLK_EN()			__HAL_RCC_GPIOB_CLK_ENABLE()
-
-
-// **********************************************************
-// 	DISPLAY ORIENTATION
+// 	ORIENTATION
 // **********************************************************
 
 // Flip display landscape orientation (0/1)
@@ -97,7 +42,7 @@
 
 
 // **********************************************************
-// 	DISPLAY FONTS
+// 	FONTS
 // **********************************************************
 //
 //	Here unused fonts can be disabled in order to save
@@ -125,20 +70,8 @@
 
 
 // **********************************************************
-// 	DISPLAY BRIGHTNESS CONTROL
+// 	BACKLIGHT
 // **********************************************************
-
-// HW timer unit
-#define ILI9488_LED_TIMER				( TIM3 )
-#define ILI9488_LED_TIMER_CH			( TIM_CHANNEL_1 )
-#define ILI9488_LED_TIMER_ALT_FUNC		( GPIO_AF2_TIM3 )
-#define ILI9488_LED_TIMER_EN_CLK()		__HAL_RCC_TIM3_CLK_ENABLE()
-
-// PWM frequency
-// NOTE: From 100Hz - 1000Hz
-// According to measurements 200Hz produce best results
-// Additionally capacitors were places on VCC (100uF tantalum, 4uF & 100nF ceramic)
-#define ILI9488_LED_TIMER_FREQ_HZ		( 200 ) // [Hz]
 
 // Start-up brightness (0.0f - 1.0f)
 #define ILI9488_LED_STARTUP_VAL			( 1.0f )

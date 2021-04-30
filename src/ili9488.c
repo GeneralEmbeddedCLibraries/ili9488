@@ -20,8 +20,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 #include "ili9488.h"
 #include "ili9488_driver.h"
-#include "../../ili9488_cfg.h"
 #include "ili9488_font.h"
+#include "../../ili9488_cfg.h"
+#include "../../ili9488_if.h"
 
 // Strings
 #include <stdio.h>
