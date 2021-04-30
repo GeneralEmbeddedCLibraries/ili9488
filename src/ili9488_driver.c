@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 /**
-*@file      ili9488_driver.h
+*@file      ili9488_driver.c
 *@brief     Interface driver for ILI9488 chip
 *@author    Ziga Miklosic
 *@date      31.04.2021
