@@ -32,8 +32,9 @@
 // General status
 typedef enum
 {
-	eILI9488_OK 	= 0x00,
-	eILI9488_ERROR 	= 0x01,
+	eILI9488_OK 		= 0x00,		/**<Normal operation */
+	eILI9488_ERROR 		= 0x01,		/**<General error */
+	eILI9488_ERROR_SPI	= 0x02,		/**<SPI interface error */
 } ili9488_status_t;
 
 // Colors

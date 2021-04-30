@@ -622,10 +622,7 @@ ili9488_status_t ili9488_set_backlight(const float32_t brightness)
 	// Check if init
 	if ( true == gb_is_init )
 	{
-		if ( eILI9488_OK != ili9488_low_if_set_led( brightness ))
-		{
-			status = eILI9488_ERROR;
-		}
+		ili9488_if_set_led( brightness );
 	}
 	else
 	{
