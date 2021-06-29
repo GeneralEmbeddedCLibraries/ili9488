@@ -147,6 +147,10 @@ ili9488_status_t	ili9488_draw_circle		(const ili9488_circ_attr_t * const p_circ_
 ili9488_status_t 	ili9488_set_string_pen	(const ili9488_color_t fg_color, const ili9488_color_t bg_color, const ili9488_font_opt_t font_opt);
 ili9488_status_t 	ili9488_set_string		(const char* str, const uint16_t page, const uint16_t col);
 ili9488_status_t	ili9488_set_cursor		(const uint16_t page, const uint16_t col);
+void				ili9488_get_cursor		(uint16_t * const p_page, uint16_t * const p_col);
 ili9488_status_t	ili9488_printf			(const char *args, ...);
+
+uint8_t	ili9488_get_font_width	(void);
+uint8_t	ili9488_get_font_height	(void);
 
 #endif // _ILI9488_H_
