@@ -29,6 +29,13 @@
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * 	Module version
+ */
+#define ILI9488_VER_MAJOR		( 1 )
+#define ILI9488_VER_MINOR		( 0 )
+#define ILI9488_VER_DEVELOP		( 0 )
+
 // General status
 typedef enum
 {

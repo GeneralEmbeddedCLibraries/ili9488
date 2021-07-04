@@ -2,11 +2,12 @@
  Version 1.1.0 (xx.xx.2021)
 ============================================================
  Brief:
- - Added API functions
- - Change if checks with asserts
+ - Enchancements
  
  Features:
- -  
+ - Added new API functions (get used font dimentions)
+ - Change ifs with asserts
+ - Added module version macros
 ============================================================
 
 
