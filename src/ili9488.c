@@ -1,10 +1,13 @@
+// Copyright (c) 2021 Ziga Miklosic
+// All Rights Reserved
+// This software is under MIT licence (https://opensource.org/licenses/MIT)
 ////////////////////////////////////////////////////////////////////////////////
 /**
 *@file      ili9488.c
 *@brief     Application layer of ILI9488 chip
 *@author    Ziga Miklosic
 *@date      31.04.2021
-*@version	V1.0.0
+*@version	V1.0.1
 */
 ////////////////////////////////////////////////////////////////////////////////
 /**
@@ -261,6 +264,28 @@ ili9488_status_t ili9488_set_cursor(const uint16_t page, const uint16_t col)
 
 ////////////////////////////////////////////////////////////////////////////////
 /**
+*		Get current info of cursor
+*
+* @param[out] 	p_page	- Pointer to current cursor page
+* @param[out] 	p_col	- Pointer to current cursor column
+* @return 		void
+*/
+////////////////////////////////////////////////////////////////////////////////
+void ili9488_get_cursor(uint16_t * const p_page, uint16_t * const p_col)
+{
+	if ( NULL != p_page )
+	{
+		*p_page = g_stringCursor.page;
+	}
+
+	if ( NULL != p_col )
+	{
+		*p_col = g_stringCursor.col;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/**
 *		Print formated string to display
 *
 * @param[in] 	format - Formated string
@@ -330,6 +355,44 @@ ili9488_status_t ili9488_printf(const char *format, ...)
 	}
 
 	return status;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Get width of currently used font
+*
+* @return 	font_width - Width of used font
+*/
+////////////////////////////////////////////////////////////////////////////////
+uint8_t	ili9488_get_font_width(void)
+{
+	uint8_t font_width = 0;
+
+	// Is init
+	ILI9488_ASSERT( true == gb_is_init );
+
+	font_width = ili9488_font_get_width( g_stringPen.font_opt );
+
+	return font_width;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Get height of currently used font
+*
+* @return 	font_width - Width of used font
+*/
+////////////////////////////////////////////////////////////////////////////////
+uint8_t	ili9488_get_font_height(void)
+{
+	uint8_t font_height = 0;
+
+	// Is init
+	ILI9488_ASSERT( true == gb_is_init );
+
+	font_height = ili9488_font_get_height( g_stringPen.font_opt );
+
+	return font_height;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

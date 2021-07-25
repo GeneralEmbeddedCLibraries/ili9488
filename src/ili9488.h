@@ -1,10 +1,13 @@
+// Copyright (c) 2021 Ziga Miklosic
+// All Rights Reserved
+// This software is under MIT licence (https://opensource.org/licenses/MIT)
 ////////////////////////////////////////////////////////////////////////////////
 /**
 *@file      ili9488.h
 *@brief     API for ILI9488 chipset
 *@author    Ziga Miklosic
 *@date      31.04.2021
-*@version	V1.0.0
+*@version	V1.0.1
 */
 ////////////////////////////////////////////////////////////////////////////////
 /**
@@ -28,6 +31,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * 	Module version
+ */
+#define ILI9488_VER_MAJOR		( 1 )
+#define ILI9488_VER_MINOR		( 0 )
+#define ILI9488_VER_DEVELOP		( 0 )
 
 // General status
 typedef enum
@@ -147,6 +157,15 @@ ili9488_status_t	ili9488_draw_circle		(const ili9488_circ_attr_t * const p_circ_
 ili9488_status_t 	ili9488_set_string_pen	(const ili9488_color_t fg_color, const ili9488_color_t bg_color, const ili9488_font_opt_t font_opt);
 ili9488_status_t 	ili9488_set_string		(const char* str, const uint16_t page, const uint16_t col);
 ili9488_status_t	ili9488_set_cursor		(const uint16_t page, const uint16_t col);
+void				ili9488_get_cursor		(uint16_t * const p_page, uint16_t * const p_col);
 ili9488_status_t	ili9488_printf			(const char *args, ...);
 
+uint8_t	ili9488_get_font_width	(void);
+uint8_t	ili9488_get_font_height	(void);
+
+////////////////////////////////////////////////////////////////////////////////
+/**
+* @} <!-- END GROUP -->
+*/
+////////////////////////////////////////////////////////////////////////////////
 #endif // _ILI9488_H_

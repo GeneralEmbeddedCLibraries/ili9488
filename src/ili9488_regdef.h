@@ -1,10 +1,13 @@
+// Copyright (c) 2021 Ziga Miklosic
+// All Rights Reserved
+// This software is under MIT licence (https://opensource.org/licenses/MIT)
 ////////////////////////////////////////////////////////////////////////////////
 /**
 *@file      ili9488_regdef.h
 *@brief     Register definition of ILI9488 chip
 *@author    Ziga Miklosic
 *@date      31.04.2021
-*@version 	V1.0.0
+*@version 	V1.0.1
 */
 ////////////////////////////////////////////////////////////////////////////////
 /**
@@ -148,4 +151,9 @@ typedef enum
 #define ILI9488_DISPLAY_SIZE_COLUMN				( 320 )
 #define ILI9488_DISPLAY_SIZE_PAGE				( 480 )
 
+////////////////////////////////////////////////////////////////////////////////
+/**
+* @} <!-- END GROUP -->
+*/
+////////////////////////////////////////////////////////////////////////////////
 #endif // _ILI9488_REGDEF_H_
