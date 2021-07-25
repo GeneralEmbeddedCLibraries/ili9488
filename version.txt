@@ -9,6 +9,9 @@
  - Added new API functions (get used font dimentions)
  - Change ifs with asserts
  - Added module version macros
+
+ Todo:
+
 ============================================================
 
 
