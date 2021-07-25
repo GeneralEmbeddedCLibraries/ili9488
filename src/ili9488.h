@@ -1,10 +1,13 @@
+// Copyright (c) 2021 Ziga Miklosic
+// All Rights Reserved
+// This software is under MIT licence (https://opensource.org/licenses/MIT)
 ////////////////////////////////////////////////////////////////////////////////
 /**
 *@file      ili9488.h
 *@brief     API for ILI9488 chipset
 *@author    Ziga Miklosic
 *@date      31.04.2021
-*@version	V1.0.0
+*@version	V1.0.1
 */
 ////////////////////////////////////////////////////////////////////////////////
 /**
@@ -160,4 +163,9 @@ ili9488_status_t	ili9488_printf			(const char *args, ...);
 uint8_t	ili9488_get_font_width	(void);
 uint8_t	ili9488_get_font_height	(void);
 
+////////////////////////////////////////////////////////////////////////////////
+/**
+* @} <!-- END GROUP -->
+*/
+////////////////////////////////////////////////////////////////////////////////
 #endif // _ILI9488_H_

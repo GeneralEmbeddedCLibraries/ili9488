@@ -1,10 +1,13 @@
+// Copyright (c) 2021 Ziga Miklosic
+// All Rights Reserved
+// This software is under MIT licence (https://opensource.org/licenses/MIT)
 ////////////////////////////////////////////////////////////////////////////////
 /**
 *@file      ili9488_font.h
 *@brief     Fonts for ILI9488 C library
 *@author    Ziga Miklosic
 *@date      31.04.2021
-*@version	V1.0.0
+*@version	V1.0.1
 */
 ////////////////////////////////////////////////////////////////////////////////
 /**
@@ -45,4 +48,9 @@ const ili9488_font_t * 	ili9488_font_get		(const ili9488_font_opt_t font_opt);
 uint8_t					ili9488_font_get_width	(const ili9488_font_opt_t font_opt);
 uint8_t					ili9488_font_get_height	(const ili9488_font_opt_t font_opt);
 
+////////////////////////////////////////////////////////////////////////////////
+/**
+* @} <!-- END GROUP -->
+*/
+////////////////////////////////////////////////////////////////////////////////
 #endif // _ILI9488_FONT_H_
