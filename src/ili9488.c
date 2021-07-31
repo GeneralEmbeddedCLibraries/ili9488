@@ -7,7 +7,7 @@
 *@brief     Application layer of ILI9488 chip
 *@author    Ziga Miklosic
 *@date      31.04.2021
-*@version	V1.0.1
+*@version	V1.0.2
 */
 ////////////////////////////////////////////////////////////////////////////////
 /**
@@ -64,6 +64,11 @@ static ili9488_cursor_t g_stringCursor;
 
 // Initialization flag
 static bool gb_is_init;
+
+/**
+ * 	Current brightness
+ */
+static float32_t gf32_brightness = 0.0f;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Function prototypes
@@ -687,6 +692,38 @@ ili9488_status_t ili9488_set_backlight(const float32_t brightness)
 	if ( true == gb_is_init )
 	{
 		ili9488_if_set_led( brightness );
+		gf32_brightness = brightness;
+	}
+	else
+	{
+		status = eILI9488_ERROR;
+
+		ILI9488_DBG_PRINT( "Module not initialized!" );
+		ILI9488_ASSERT( 0 );
+	}
+
+	return status;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/**
+*		Get display backlight
+*
+* @param[out] 	p_brightness 	- Brightness value from 0.0 - 1.0
+* @return 		status 			- Status of operation
+*/
+////////////////////////////////////////////////////////////////////////////////
+ili9488_status_t ili9488_get_backlight(float32_t * const p_brightness)
+{
+	ili9488_status_t status = eILI9488_OK;
+
+	// Check if init
+	if ( true == gb_is_init )
+	{
+		if ( NULL != p_brightness )
+		{
+			*p_brightness = gf32_brightness;
+		}
 	}
 	else
 	{

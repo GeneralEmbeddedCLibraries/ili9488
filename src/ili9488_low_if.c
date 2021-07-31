@@ -7,7 +7,7 @@
 *@brief     Low level interface with ILI9488 chip
 *@author    Ziga Miklosic
 *@date      31.04.2021
-*@version	V1.0.1
+*@version	V1.0.2
 */
 ////////////////////////////////////////////////////////////////////////////////
 /**

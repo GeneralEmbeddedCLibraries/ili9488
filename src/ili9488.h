@@ -7,7 +7,7 @@
 *@brief     API for ILI9488 chipset
 *@author    Ziga Miklosic
 *@date      31.04.2021
-*@version	V1.0.1
+*@version	V1.0.2
 */
 ////////////////////////////////////////////////////////////////////////////////
 /**
@@ -37,7 +37,7 @@
  */
 #define ILI9488_VER_MAJOR		( 1 )
 #define ILI9488_VER_MINOR		( 0 )
-#define ILI9488_VER_DEVELOP		( 0 )
+#define ILI9488_VER_DEVELOP		( 2 )
 
 // General status
 typedef enum
@@ -147,6 +147,7 @@ typedef struct
 ili9488_status_t 	ili9488_init			(void);
 bool				ili9488_is_init			(void);
 ili9488_status_t 	ili9488_set_backlight	(const float32_t brightness);
+ili9488_status_t 	ili9488_get_backlight	(float32_t * const p_brightness);
 
 // Graphics functions
 ili9488_status_t 	ili9488_set_background	(const ili9488_color_t color);
